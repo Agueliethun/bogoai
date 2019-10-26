@@ -12,8 +12,6 @@ public class GatherStrategy implements IUnitStrategy {
     private AIStrategy gameStrat;
     private IUnitStrategy nextStrategy;
 
-    private Location localDest;
-
     public GatherStrategy(Map map, Unit unit, UnitManager unitManager) {
         this.map = map;
         this.unitManager = unitManager;
@@ -31,24 +29,49 @@ public class GatherStrategy implements IUnitStrategy {
 
         if (resource > 0) {
             unit.setPath(gameStrat.pathfinder.findPath(myLoc, gameStrat.base.getLocation(), 0));
+
             return AICommand.buildMoveCommand(unit, unit.nextMove());
         } else {
+            if (unit.isAdjacentToResource(map)) {
+                return AICommand.buildGatherCommand(unit, unit.nextMove());
+            }
+
             if (gameStrat.base == null) {
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
             }
 
-            if (Math.abs(myLoc.getX() - gameStrat.base.getLocation().getX() +
-                    Math.abs(myLoc.getY() - gameStrat.base.getLocation().getY())) < 2) {
-                return AICommand.buildGatherCommand(unit, unit.nextMove());
-            }
+            if (map.getResources().size() > 0) {
+//                Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
 
-            if (unit.getPath() == null || unit.getPath().size() == 0) {
-                Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
+
+                System.out.println(destLoc);
+
                 unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 0));
+
+                for (Location l : unit.getPath()) {
+                    System.out.print(l + " ");
+                    System.out.println();
+                }
 
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
             }
+
             return AICommand.buildMoveCommand(unit, unit.nextMove());
+
+//            if (!unit.hasPath()) {
+//                if (map.getResources().size() > 0) {
+//                    Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
+//                    unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 0));
+//                }
+//            } else {
+////                Location destLoc = unit.getPath().get(unit.getPath().size() - 1);
+////                if (Math.abs(myLoc.getX() - destLoc.getX() +
+////                        Math.abs(myLoc.getY() - destLoc.getY())) < 2) {
+////                    System.out.println("Within gather distance");
+////
+////                }
+//            }
         }
+
     }
 }
