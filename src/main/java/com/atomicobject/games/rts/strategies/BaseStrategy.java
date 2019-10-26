@@ -12,6 +12,7 @@ public class BaseStrategy implements IUnitStrategy {
     private IUnitStrategy nextStrategy;
 
     private int buildCooldown = 0;
+    public boolean emergency;
 
     public BaseStrategy(Map map, Unit unit, UnitManager unitManager) {
         this.map = map;
@@ -22,6 +23,10 @@ public class BaseStrategy implements IUnitStrategy {
     @Override
     public AICommand buildCommand(Unit unit) {
 //        if (buildCooldown <= 0) {
+            if (emergency && unitManager.getTankCount() < 3 && unit.getAvailableResources() > unitManager.getTankInfo().getCost()) {
+                return AICommand.buildUnitCommand("tank");
+            }
+
             if (unitManager.getScoutCount() < 1 && unit.getAvailableResources() > unitManager.getScoutInfo().getCost()) {
                 buildCooldown += unitManager.getScoutInfo().getCreateTime();
                 return AICommand.buildUnitCommand("scout");
@@ -31,6 +36,8 @@ public class BaseStrategy implements IUnitStrategy {
                 buildCooldown += unitManager.getWorkerInfo().getCreateTime();
                 return AICommand.buildUnitCommand("worker");
             }
+
+
 //        }
 
 //        buildCooldown--;
@@ -41,5 +48,10 @@ public class BaseStrategy implements IUnitStrategy {
     @Override
     public IUnitStrategy getNextStrategy() {
         return nextStrategy;
+    }
+
+    @Override
+    public void setNextStrategy(IUnitStrategy strat) {
+        nextStrategy = strat;
     }
 }

@@ -27,6 +27,11 @@ public class AttackStrategy implements IUnitStrategy {
         return nextStrategy;
     }
 
+    @Override
+    public void setNextStrategy(IUnitStrategy strat) {
+        nextStrategy = strat;
+    }
+
     public AICommand buildCommand(Unit unit) {
         var direction = MapDirections.randomDirection();
 

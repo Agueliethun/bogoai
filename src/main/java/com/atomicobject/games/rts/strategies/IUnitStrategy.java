@@ -6,4 +6,5 @@ import com.atomicobject.games.rts.state.Unit;
 public interface IUnitStrategy {
     AICommand buildCommand(Unit unit);
     IUnitStrategy getNextStrategy();
+    void setNextStrategy(IUnitStrategy strat);
 }

@@ -27,6 +27,10 @@ public class UnitStrategyFactory {
         return null;
     }
 
+    public IUnitStrategy buildAttackStrategy(Map map, Unit unit, UnitManager unitManager) {
+        return new AttackStrategy(map, unit, unitManager);
+    }
+
     public IUnitStrategy buildBaseStrategy(Map map, Unit unit, UnitManager unitManager) {
         return new BaseStrategy(map, unit, unitManager);
     }

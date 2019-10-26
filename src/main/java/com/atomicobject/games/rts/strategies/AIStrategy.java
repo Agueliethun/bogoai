@@ -29,6 +29,7 @@ public class AIStrategy {
     private boolean scoutMade = false;
     Unit base;
     Pathfinder pathfinder;
+    UnitStrategyFactory uf = new UnitStrategyFactory();
 
     public AIStrategy(UnitManager unitManager, Map map) {
         instance = this;
@@ -57,10 +58,27 @@ public class AIStrategy {
         }
 
         unitManager.getUnits().forEach((k, v) -> {
-            if (emergency && !v.isScout()) {
-                UnitStrategyFactory uf  = new UnitStrategyFactory();
+            if (v.getStrategy().getNextStrategy() != null) {
+                v.setStrategy(v.getStrategy().getNextStrategy());
+                v.getStrategy().setNextStrategy(null);
+            }
 
-//                v.setStrategy(uf.buildAttackStrategy());s
+            if (!emergency) {
+                uf.assignStrategy(map, v, unitManager);
+            }
+
+            if (emergency && !v.isScout() && !v.isBase()) {
+                v.setStrategy(uf.buildAttackStrategy(map, v, unitManager));
+            }
+
+            if (emergency && v.isBase()) {
+                ((BaseStrategy)(v.getStrategy())).emergency = true;
+            }
+
+            if (v.isWorker() && map.getResources().size() == 0) {
+                v.setStrategy(uf.buildExploreStrategy(map, v, unitManager));
+            } else if (v.isWorker() && map.getResources().size() > 0) {
+                v.setStrategy(uf.buildGatherStrategy(map, v, unitManager));
             }
         });
 

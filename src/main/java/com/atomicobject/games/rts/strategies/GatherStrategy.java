@@ -6,6 +6,8 @@ import com.atomicobject.games.rts.state.Unit;
 import com.atomicobject.games.rts.state.UnitManager;
 import com.atomicobject.games.rts.updates.Location;
 
+import java.util.List;
+
 public class GatherStrategy implements IUnitStrategy {
     private final Map map;
     private final UnitManager unitManager;
@@ -22,10 +24,18 @@ public class GatherStrategy implements IUnitStrategy {
         return nextStrategy;
     }
 
+    @Override
+    public void setNextStrategy(IUnitStrategy strat) {
+        nextStrategy = strat;
+    }
+
     public AICommand buildCommand(Unit unit) {
         int resource = unit.getUnitUpdate().getResource();
 
         Location myLoc = unit.getLocation();
+
+        List<Location> enemyLocations = map.enemyLocationsInRange(unit.getLocation(), 2);
+        nextStrategy = gameStrat.uf.buildAttackStrategy(map, unit, unitManager);
 
         if (resource > 0) {
             unit.setPath(gameStrat.pathfinder.findPath(myLoc, gameStrat.base.getLocation(), 1));
