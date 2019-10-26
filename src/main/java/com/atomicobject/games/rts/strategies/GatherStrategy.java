@@ -41,17 +41,9 @@ public class GatherStrategy implements IUnitStrategy {
             }
 
             if (map.getResources().size() > 0) {
-//                Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
+                Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
 
-
-                System.out.println(destLoc);
-
-                unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 0));
-
-                for (Location l : unit.getPath()) {
-                    System.out.print(l + " ");
-                    System.out.println();
-                }
+                unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 1));
 
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
             }

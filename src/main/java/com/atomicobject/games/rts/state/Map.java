@@ -142,26 +142,27 @@ public class Map {
         }
     }
 
-//    class NearestTileComparator implements Comparator<Tile> {
-//
-//        private final Location origin;
-//
-//        public NearestTileComparator(Location location) {
-//            this.origin = location;
-//        }
-//
-//        @Override
-//        public int compare(Tile one, Tile two) {
-//            var distanceOne = calculateEstimatedDistance(origin, one.getLocation());
-//            var distanceTwo = calculateEstimatedDistance(origin, two.getLocation());
-//            if (distanceOne < distanceTwo) return -1;
-//            if (distanceOne == distanceTwo) return 0;
-//            return 1;
-//        }
-//    }
+    class NearestTileComparator implements Comparator<Tile> {
+
+        private final Location origin;
+
+        public NearestTileComparator(Location location) {
+            this.origin = location;
+        }
+
+        @Override
+        public int compare(Tile one, Tile two) {
+            var distanceOne = calculateEstimatedDistance(origin, one.getLocation());
+            var distanceTwo = calculateEstimatedDistance(origin, two.getLocation());
+            if (distanceOne < distanceTwo) return -1;
+            if (distanceOne == distanceTwo) return 0;
+            return 1;
+        }
+    }
 
     public List<Location> resourceLocationsNearest(Location location) {
         var comparator = new NearestLocComparator(location);
+//        var comparator = new NearestTileComparator(location);
 
         return resources.keySet().stream().sorted(comparator).collect(Collectors.toList());
 
