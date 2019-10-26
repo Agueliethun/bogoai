@@ -44,7 +44,6 @@ public class AIStrategy {
     public List<AICommand> buildCommandList() {
         if (base == null) {
             unitManager.getUnits().forEach((k, v) -> {
-                System.out.println("is base: " + v.isBase());
                 if (v.isBase()) {
                     base = v;
                 }

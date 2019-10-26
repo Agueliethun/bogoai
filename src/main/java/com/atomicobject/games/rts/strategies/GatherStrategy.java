@@ -36,22 +36,19 @@ public class GatherStrategy implements IUnitStrategy {
             if (gameStrat.base == null) {
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
             }
-            if (myLoc.equals(gameStrat.base.getLocation())) {
-                if (map.getResources().size() > 0) {
-                    Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
-                    unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 0));
-                } else {
-                    return AICommand.buildMoveCommand(unit, unit.nextMove());
-                }
+
+            if (Math.abs(myLoc.getX() - gameStrat.base.getLocation().getX() +
+                    Math.abs(myLoc.getY() - gameStrat.base.getLocation().getY())) < 2) {
+                return AICommand.buildGatherCommand(unit, unit.nextMove());
+            }
+
+            if (unit.getPath() == null || unit.getPath().size() == 0) {
+                Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
+                unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 0));
 
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
-            } else {
-                if (unit.isAdjacentToResource(map)) {
-                    return AICommand.buildGatherCommand(unit, unit.nextMove());
-                } else {
-                    return AICommand.buildMoveCommand(unit, unit.nextMove());
-                }
             }
+            return AICommand.buildMoveCommand(unit, unit.nextMove());
         }
     }
 }

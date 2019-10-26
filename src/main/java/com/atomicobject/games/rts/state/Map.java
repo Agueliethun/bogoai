@@ -42,10 +42,6 @@ public class Map {
             }
         });
 
-        resources.forEach((k, v) -> {
-            System.out.println("resource at " + k.getX() + ", " + k.getY());
-        });
-
         if (enemyBase == null) {
             Optional foundBase = tiles.values().stream().filter(t -> t.hasEnemyBase()).findFirst();
             if (foundBase.isPresent()) {
