@@ -28,7 +28,7 @@ public class GatherStrategy implements IUnitStrategy {
         Location myLoc = unit.getLocation();
 
         if (resource > 0) {
-            unit.setPath(gameStrat.pathfinder.findPath(myLoc, gameStrat.base.getLocation(), 0));
+            unit.setPath(gameStrat.pathfinder.findPath(myLoc, gameStrat.base.getLocation(), 1));
 
             return AICommand.buildMoveCommand(unit, unit.nextMove());
         } else {
@@ -40,7 +40,7 @@ public class GatherStrategy implements IUnitStrategy {
                 return AICommand.buildMoveCommand(unit, unit.nextMove());
             }
 
-            if (map.getResources().size() > 0) {
+            if (!unit.hasPath() && map.getResources().size() > 0) {
                 Location destLoc = map.resourceLocationsNearest(myLoc).get(0);
 
                 unit.setPath(gameStrat.pathfinder.findPath(myLoc, destLoc, 1));

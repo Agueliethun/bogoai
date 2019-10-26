@@ -50,9 +50,19 @@ public class AIStrategy {
             });
         }
 
-//        unitManager.getUnits().forEach((k, v) -> {
-//            if (v.
-//        });
+        if (map.enemyLocationsInRange(base.getLocation(), 4).size() > 0) {
+            emergency = true;
+        } else {
+            emergency =  false;
+        }
+
+        unitManager.getUnits().forEach((k, v) -> {
+            if (emergency && !v.isScout()) {
+                UnitStrategyFactory uf  = new UnitStrategyFactory();
+
+//                v.setStrategy(uf.buildAttackStrategy());s
+            }
+        });
 
         return unitManager.getUnits().values()
                 .stream()

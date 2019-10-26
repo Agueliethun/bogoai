@@ -17,17 +17,25 @@ public class UnitStrategyFactory {
             return buildGatherStrategy(map, unit, unitManager);
         }
 
+        if (unit.isBase())  {
+            return buildBaseStrategy(map, unit, unitManager);
+        }
+
         if (unit.isMobile()) {
             return buildExploreStrategy(map, unit, unitManager);
         }
         return null;
     }
 
-    private IUnitStrategy buildGatherStrategy(Map map, Unit unit, UnitManager unitManager) {
+    public IUnitStrategy buildBaseStrategy(Map map, Unit unit, UnitManager unitManager) {
+        return new BaseStrategy(map, unit, unitManager);
+    }
+
+    public IUnitStrategy buildGatherStrategy(Map map, Unit unit, UnitManager unitManager) {
         return new GatherStrategy(map, unit, unitManager);
     }
 
-    private IUnitStrategy buildExploreStrategy(Map map, Unit unit, UnitManager unitManager) {
+    public IUnitStrategy buildExploreStrategy(Map map, Unit unit, UnitManager unitManager) {
         return new ExploreStrategy(map, unit, unitManager);
     }
 }

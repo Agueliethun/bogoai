@@ -31,16 +31,27 @@ public class Map {
 
         tileUpdates.removeIf(t -> t.getResources() == null);
         tileUpdates.forEach((t) -> {
-            if (resources.containsKey(t.getLocation()))  {
-                if (t.getResources().getTotal() == 0) {
-                    resources.remove(t.getLocation());
-                }
-            } else {
-                if (t.getResources().getTotal() > 0) {
+//            if (resources.containsKey(t.getLocation()))  {
+//                if (t.getResources().getValue() == 0) {
+//                    resources.remove(t.getLocation());
+//                }
+//            } else {
+                if (t.getResources().getValue() > 0) {
                     resources.put(t.getLocation(), t.getResources().getValue());
                 }
-            }
+//            }
         });
+
+        List<Location> toRemove = new ArrayList<>();
+
+        resources.forEach((k, v) -> {
+            if (!getTile(k).hasResource()) {
+                toRemove.add(k);
+            }
+            System.out.println(k);
+        });
+
+        toRemove.forEach(l -> resources.remove(l));
 
         if (enemyBase == null) {
             Optional foundBase = tiles.values().stream().filter(t -> t.hasEnemyBase()).findFirst();

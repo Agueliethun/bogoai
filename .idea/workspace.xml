@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31f4c652-13f8-4326-8689-ed5fb905eaa1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map$NearestTileComparator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/BaseStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -11,10 +11,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map$NearestLocComparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map$NearestLocComparator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map$NearestTileComparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map$NearestTileComparator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/state/Map.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/strategies/GatherStrategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/strategies/GatherStrategy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/strategies/UnitStrategyFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/atomicobject/games/rts/strategies/UnitStrategyFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/state/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/state/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/AIStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/AIStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/GatherStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/GatherStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/UnitStrategyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atomicobject/games/rts/strategies/UnitStrategyFactory.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
